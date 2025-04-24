@@ -45,7 +45,12 @@ jobs:
             /k:"DarkBrain-LP_ShareX_698bd895-f44a-440f-8167-2707c805eb1a" `
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
             /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
-
+            
+      - name: Restore NuGet packages
+        shell: powershell
+        run: |
+          dotnet restore ShareX.sln
+          
       - name: Build solution using MSBuild
         shell: powershell
         run: |
